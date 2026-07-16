@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KAIFA Voice Test</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    main {
+      width: min(900px, 100%);
+      display: grid;
+      gap: 16px;
+    }
+
+    section {
+      background: #ffffff;
+      border: 1px solid #d8dee9;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(31, 41, 55, 0.08);
+    }
+
+    h1, h2 {
+      margin: 0 0 12px;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    h2 {
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 650;
+      color: #334155;
+    }
+
+    input, select, textarea, button {
+      min-height: 38px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      padding: 8px 10px;
+      font: inherit;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      min-height: 86px;
+      resize: vertical;
+    }
+
+    button {
+      border-color: #2563eb;
+      background: #2563eb;
+      color: #ffffff;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button.secondary {
+      border-color: #64748b;
+      background: #ffffff;
+      color: #334155;
+    }
+
+    button.danger {
+      border-color: #dc2626;
+      background: #dc2626;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .status {
+      min-height: 24px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      background: #eef2ff;
+      color: #3730a3;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .result {
+      min-height: 42px;
+      padding: 10px;
+      border-radius: 6px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #0f172a;
+      font-size: 13px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    pre {
+      min-height: 220px;
+      max-height: 360px;
+      overflow: auto;
+      margin: 0;
+      padding: 12px;
+      border-radius: 6px;
+      background: #111827;
+      color: #d1d5db;
+      font-size: 12px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>KAIFA Voice Endpoint Test</h1>
+      <div class="grid">
+        <label>
+          API Base URL
+          <input id="apiBase" value="http://localhost:8080" autocomplete="off">
+        </label>
+        <label>
+          Mode
+          <select id="mode">
+            <option value="assessment">Assessment</option>
+            <option value="learning">Learning</option>
+          </select>
+        </label>
+        <label>
+          Email
+          <input id="email" value="umar@kaifa.com" autocomplete="username">
+        </label>
+        <label>
+          Password
+          <input id="password" value="Pass123" type="password" autocomplete="current-password">
+        </label>
+        <label>
+          Module ID
+          <input id="moduleId" value="mod-001" autocomplete="off">
+        </label>
+        <label>
+          Learning Level
+          <input id="level" value="A1" autocomplete="off">
+        </label>
+      </div>
+      <div class="actions">
+        <button id="loginBtn" type="button">Login</button>
+        <button id="connectBtn" type="button" disabled>Connect</button>
+        <button id="recordBtn" type="button" disabled>Start Mic</button>
+        <button id="stopRecordBtn" class="secondary" type="button" disabled>Stop Mic</button>
+        <button id="disconnectBtn" class="danger" type="button" disabled>Disconnect</button>
+      </div>
+      <div id="status" class="status">Not connected</div>
+      <audio id="player" controls autoplay></audio>
+    </section>
+
+    <section>
+      <h2>REST Speech</h2>
+      <div class="grid">
+        <label>
+          TTS Text
+          <textarea id="ttsText">Hello, welcome to today's lesson.</textarea>
+        </label>
+        <label>
+          STT Audio File
+          <input id="sttFile" type="file" accept="audio/*">
+        </label>
+      </div>
+      <div class="actions">
+        <button id="ttsBtn" type="button" disabled>Test TTS</button>
+        <button id="sttFileBtn" class="secondary" type="button" disabled>Transcribe File</button>
+        <button id="sttRecordBtn" class="secondary" type="button" disabled>Record STT</button>
+        <button id="sttStopBtn" class="danger" type="button" disabled>Stop & Transcribe</button>
+      </div>
+      <audio id="ttsPlayer" controls></audio>
+      <div id="sttResult" class="result">No transcription yet</div>
+    </section>
+
+    <section>
+      <h2>Messages</h2>
+      <pre id="log"></pre>
+    </section>
+  </main>
+
+  <script>
+    const els = {
+      apiBase: document.querySelector("#apiBase"),
+      mode: document.querySelector("#mode"),
+      email: document.querySelector("#email"),
+      password: document.querySelector("#password"),
+      moduleId: document.querySelector("#moduleId"),
+      level: document.querySelector("#level"),
+      loginBtn: document.querySelector("#loginBtn"),
+      connectBtn: document.querySelector("#connectBtn"),
+      recordBtn: document.querySelector("#recordBtn"),
+      stopRecordBtn: document.querySelector("#stopRecordBtn"),
+      disconnectBtn: document.querySelector("#disconnectBtn"),
+      ttsText: document.querySelector("#ttsText"),
+      sttFile: document.querySelector("#sttFile"),
+      ttsBtn: document.querySelector("#ttsBtn"),
+      sttFileBtn: document.querySelector("#sttFileBtn"),
+      sttRecordBtn: document.querySelector("#sttRecordBtn"),
+      sttStopBtn: document.querySelector("#sttStopBtn"),
+      ttsPlayer: document.querySelector("#ttsPlayer"),
+      sttResult: document.querySelector("#sttResult"),
+      status: document.querySelector("#status"),
+      player: document.querySelector("#player"),
+      log: document.querySelector("#log"),
+    };
+
+    let token = "";
+    let ws = null;
+    let mediaRecorder = null;
+    let micStream = null;
+    let mediaSource = null;
+    let sourceBuffer = null;
+    let pendingAudio = [];
+    let collectedAudio = [];
+    let objectUrl = "";
+    let ttsObjectUrl = "";
+    let sttRecorder = null;
+    let sttStream = null;
+    let sttChunks = [];
+
+    function log(message, data) {
+      const time = new Date().toLocaleTimeString();
+      const suffix = data === undefined ? "" : " " + JSON.stringify(data, null, 2);
+      els.log.textContent += `[${time}] ${message}${suffix}\n`;
+      els.log.scrollTop = els.log.scrollHeight;
+    }
+
+    function setStatus(message) {
+      els.status.textContent = message;
+      log(message);
+    }
+
+    function wsBaseURL() {
+      const base = new URL(els.apiBase.value.trim());
+      base.protocol = base.protocol === "https:" ? "wss:" : "ws:";
+      return base;
+    }
+
+    function voiceURL() {
+      const base = wsBaseURL();
+      const mode = els.mode.value;
+      base.pathname = `/api/${mode}/voice`;
+      base.search = "";
+      base.searchParams.set("module_id", els.moduleId.value.trim());
+      base.searchParams.set("access_token", token);
+      if (mode === "learning") {
+        base.searchParams.set("level", els.level.value.trim());
+      }
+      return base.toString();
+    }
+
+    async function login() {
+      const base = els.apiBase.value.trim().replace(/\/$/, "");
+      const res = await fetch(`${base}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: els.email.value.trim(),
+          password: els.password.value,
+        }),
+      });
+      const payload = await res.json();
+      if (!res.ok) {
+        throw new Error(payload.message || `Login failed: ${res.status}`);
+      }
+      token = payload.data.access_token;
+      els.connectBtn.disabled = false;
+      els.ttsBtn.disabled = false;
+      els.sttFileBtn.disabled = false;
+      els.sttRecordBtn.disabled = false;
+      setStatus("Logged in");
+    }
+
+    function apiBaseURL() {
+      return els.apiBase.value.trim().replace(/\/$/, "");
+    }
+
+    function speechEndpoint(kind) {
+      const url = new URL(`${apiBaseURL()}/api/${els.mode.value}/speech/${kind}`);
+      if (kind === "stt") {
+        url.searchParams.set("module_id", els.moduleId.value.trim());
+      }
+      return url.toString();
+    }
+
+    async function testTTS() {
+      const text = els.ttsText.value.trim();
+      if (!text) {
+        throw new Error("TTS text is required");
+      }
+      const res = await fetch(speechEndpoint("tts"), {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_text: text }),
+      });
+      if (!res.ok) {
+        const payload = await readJSONSafely(res);
+        throw new Error(payload.message || `TTS failed: ${res.status}`);
+      }
+      const audio = await res.blob();
+      if (ttsObjectUrl) {
+        URL.revokeObjectURL(ttsObjectUrl);
+      }
+      ttsObjectUrl = URL.createObjectURL(audio);
+      els.ttsPlayer.src = ttsObjectUrl;
+      els.ttsPlayer.play().catch((err) => log("TTS play blocked", { error: err.message }));
+      log("TTS response", { bytes: audio.size, type: audio.type || "audio/mpeg" });
+    }
+
+    async function transcribeAudio(audio, type) {
+      if (!audio || audio.size === 0) {
+        throw new Error("Audio is required");
+      }
+      const res = await fetch(speechEndpoint("stt"), {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": type || audio.type || "application/octet-stream",
+        },
+        body: audio,
+      });
+      const payload = await readJSONSafely(res);
+      if (!res.ok) {
+        throw new Error(payload.message || `STT failed: ${res.status}`);
+      }
+      const text = payload.data?.text || "";
+      els.sttResult.textContent = text || "(empty transcript)";
+      log("STT response", payload);
+    }
+
+    async function transcribeSelectedFile() {
+      const file = els.sttFile.files[0];
+      if (!file) {
+        throw new Error("Choose an audio file first");
+      }
+      await transcribeAudio(file, file.type);
+    }
+
+    async function startSTTRecording() {
+      sttChunks = [];
+      sttStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
+        ? "audio/webm;codecs=opus"
+        : "";
+      sttRecorder = new MediaRecorder(sttStream, mimeType ? { mimeType } : undefined);
+      sttRecorder.addEventListener("dataavailable", (event) => {
+        if (event.data.size > 0) {
+          sttChunks.push(event.data);
+        }
+      });
+      sttRecorder.start(500);
+      els.sttRecordBtn.disabled = true;
+      els.sttStopBtn.disabled = false;
+      setStatus("STT recording");
+    }
+
+    async function stopSTTRecording() {
+      if (!sttRecorder || sttRecorder.state === "inactive") {
+        return;
+      }
+      const recorder = sttRecorder;
+      const stopped = new Promise((resolve) => recorder.addEventListener("stop", resolve, { once: true }));
+      recorder.stop();
+      await stopped;
+      if (sttStream) {
+        sttStream.getTracks().forEach((track) => track.stop());
+      }
+      sttRecorder = null;
+      sttStream = null;
+      els.sttRecordBtn.disabled = !token;
+      els.sttStopBtn.disabled = true;
+      const audio = new Blob(sttChunks, { type: recorder.mimeType || "audio/webm" });
+      await transcribeAudio(audio, audio.type);
+      setStatus("STT transcription complete");
+    }
+
+    async function readJSONSafely(res) {
+      try {
+        return await res.json();
+      } catch {
+        return {};
+      }
+    }
+
+    function resetAudioPipeline() {
+      pendingAudio = [];
+      collectedAudio = [];
+      sourceBuffer = null;
+      mediaSource = null;
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+        objectUrl = "";
+      }
+
+      if (window.MediaSource && MediaSource.isTypeSupported("audio/mpeg")) {
+        mediaSource = new MediaSource();
+        objectUrl = URL.createObjectURL(mediaSource);
+        els.player.src = objectUrl;
+        mediaSource.addEventListener("sourceopen", () => {
+          sourceBuffer = mediaSource.addSourceBuffer("audio/mpeg");
+          sourceBuffer.addEventListener("updateend", flushAudioQueue);
+          flushAudioQueue();
+        });
+      } else {
+        els.player.removeAttribute("src");
+      }
+    }
+
+    function appendAudioChunk(chunk) {
+      collectedAudio.push(chunk);
+      if (!sourceBuffer || sourceBuffer.updating) {
+        pendingAudio.push(chunk);
+        return;
+      }
+      sourceBuffer.appendBuffer(chunk);
+    }
+
+    function flushAudioQueue() {
+      if (!sourceBuffer || sourceBuffer.updating || pendingAudio.length === 0) {
+        return;
+      }
+      sourceBuffer.appendBuffer(pendingAudio.shift());
+      els.player.play().catch(() => {});
+    }
+
+    function playCollectedAudioFallback() {
+      if (mediaSource || collectedAudio.length === 0) {
+        return;
+      }
+      const blob = new Blob(collectedAudio, { type: "audio/mpeg" });
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+      }
+      objectUrl = URL.createObjectURL(blob);
+      els.player.src = objectUrl;
+      els.player.play().catch((err) => log("Audio play blocked", { error: err.message }));
+    }
+
+    function connect() {
+      resetAudioPipeline();
+      ws = new WebSocket(voiceURL());
+      ws.binaryType = "arraybuffer";
+
+      ws.addEventListener("open", () => {
+        els.recordBtn.disabled = false;
+        els.disconnectBtn.disabled = false;
+        els.connectBtn.disabled = true;
+        setStatus("WebSocket connected");
+      });
+
+      ws.addEventListener("message", (event) => {
+        if (typeof event.data === "string") {
+          try {
+            log("Server JSON", JSON.parse(event.data));
+          } catch {
+            log("Server text", event.data);
+          }
+          return;
+        }
+        const chunk = new Uint8Array(event.data);
+        log("Server audio chunk", { bytes: chunk.byteLength });
+        appendAudioChunk(chunk);
+      });
+
+      ws.addEventListener("close", (event) => {
+        stopMic();
+        playCollectedAudioFallback();
+        els.recordBtn.disabled = true;
+        els.stopRecordBtn.disabled = true;
+        els.disconnectBtn.disabled = true;
+        els.connectBtn.disabled = !token;
+        setStatus(`WebSocket closed (${event.code})`);
+      });
+
+      ws.addEventListener("error", () => {
+        setStatus("WebSocket error");
+      });
+    }
+
+    async function startMic() {
+      if (!ws || ws.readyState !== WebSocket.OPEN) {
+        throw new Error("WebSocket is not connected");
+      }
+
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
+        ? "audio/webm;codecs=opus"
+        : "";
+      mediaRecorder = new MediaRecorder(micStream, mimeType ? { mimeType } : undefined);
+
+      mediaRecorder.addEventListener("dataavailable", async (event) => {
+        if (event.data.size === 0 || ws.readyState !== WebSocket.OPEN) {
+          return;
+        }
+        const chunk = await event.data.arrayBuffer();
+        ws.send(chunk);
+        log("Mic chunk sent", { bytes: chunk.byteLength, mime_type: mediaRecorder.mimeType });
+      });
+
+      mediaRecorder.start(500);
+      els.recordBtn.disabled = true;
+      els.stopRecordBtn.disabled = false;
+      setStatus("Microphone streaming");
+    }
+
+    function stopMic() {
+      if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
+      }
+      if (micStream) {
+        micStream.getTracks().forEach((track) => track.stop());
+      }
+      mediaRecorder = null;
+      micStream = null;
+      els.recordBtn.disabled = !ws || ws.readyState !== WebSocket.OPEN;
+      els.stopRecordBtn.disabled = true;
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        setStatus("Microphone stopped");
+      }
+    }
+
+    function disconnect() {
+      stopMic();
+      stopSTTStream();
+      if (ws) {
+        ws.close(1000, "test complete");
+      }
+      ws = null;
+    }
+
+    function stopSTTStream() {
+      if (sttRecorder && sttRecorder.state !== "inactive") {
+        sttRecorder.stop();
+      }
+      if (sttStream) {
+        sttStream.getTracks().forEach((track) => track.stop());
+      }
+      sttRecorder = null;
+      sttStream = null;
+      els.sttRecordBtn.disabled = !token;
+      els.sttStopBtn.disabled = true;
+    }
+
+    els.loginBtn.addEventListener("click", () => login().catch((err) => setStatus(err.message)));
+    els.ttsBtn.addEventListener("click", () => testTTS().catch((err) => setStatus(err.message)));
+    els.sttFileBtn.addEventListener("click", () => transcribeSelectedFile().catch((err) => setStatus(err.message)));
+    els.sttRecordBtn.addEventListener("click", () => startSTTRecording().catch((err) => setStatus(err.message)));
+    els.sttStopBtn.addEventListener("click", () => stopSTTRecording().catch((err) => setStatus(err.message)));
+    els.connectBtn.addEventListener("click", () => {
+      try {
+        connect();
+      } catch (err) {
+        setStatus(err.message);
+      }
+    });
+    els.recordBtn.addEventListener("click", () => startMic().catch((err) => setStatus(err.message)));
+    els.stopRecordBtn.addEventListener("click", stopMic);
+    els.disconnectBtn.addEventListener("click", disconnect);
+  </script>
+</body>
+</html>

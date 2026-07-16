@@ -1,0 +1,11 @@
+echo '🏗️👷 Styling, testing, and building your project before committing'
+
+# Run lint-staged with Fandi
+npx lint-staged || (
+    echo '🙈👷🔨❌ Yoo, your staged files did not pass Eslint Prettier checks. Please fix them!';
+    false;
+)
+
+
+# If there are no errors, commit the changes
+echo "🎉🎉🎉🎉 Yeayy, your staged files passed Fandi's checks... I am committing this now. ✨🚀🏄‍♂️🍻"

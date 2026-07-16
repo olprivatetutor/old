@@ -1,0 +1,1327 @@
+openapi: 3.0.3
+info:
+  title: Kaifa API
+  version: 1.0.0
+  description: REST and WebSocket API for the Kaifa AI language learning platform.
+servers:
+  - url: https://api.kaifanesia.com/api
+    description: Production API
+  - url: http://localhost:8080/api
+    description: Local API
+tags:
+  - name: Health
+  - name: Auth
+  - name: Users
+  - name: Syllabi
+  - name: Assessment
+  - name: Learning
+security:
+  - bearerAuth: []
+paths:
+  /health:
+    get:
+      tags: [Health]
+      summary: Health check
+      security: []
+      responses:
+        "200":
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login and issue access and refresh tokens
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/LoginResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /auth/refresh-token:
+    post:
+      tags: [Auth]
+      summary: Rotate a refresh token and issue a new token pair
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RefreshTokenRequest"
+      responses:
+        "200":
+          description: Token refreshed
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/LoginResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+  /users:
+    post:
+      tags: [Users]
+      summary: Create a user
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/User"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /syllabi:
+    get:
+      tags: [Syllabi]
+      summary: List syllabi
+      description: "Returns syllabi. Optional language filter: english or arabic."
+      security: []
+      parameters:
+        - name: language
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [english, arabic]
+      responses:
+        "200":
+          description: Syllabi list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Syllabus"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /syllabi/{id}:
+    get:
+      tags: [Syllabi]
+      summary: Get syllabus detail
+      security: []
+      parameters:
+        - $ref: "#/components/parameters/SyllabusID"
+      responses:
+        "200":
+          description: Syllabus detail
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/Syllabus"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /syllabi/{id}/modules:
+    get:
+      tags: [Syllabi]
+      summary: List modules for a syllabus
+      security: []
+      parameters:
+        - $ref: "#/components/parameters/SyllabusID"
+      responses:
+        "200":
+          description: Module list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/Module"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /syllabi/{id}/modules/{moduleId}:
+    get:
+      tags: [Syllabi]
+      summary: Get module detail
+      security: []
+      parameters:
+        - $ref: "#/components/parameters/SyllabusID"
+        - $ref: "#/components/parameters/ModuleID"
+      responses:
+        "200":
+          description: Module detail
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/Module"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /assessment/start:
+    post:
+      tags: [Assessment]
+      summary: Start an assessment session for a module
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModuleRequest"
+      responses:
+        "200":
+          description: First assessment question
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/AssessmentChatResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /assessment/chat:
+    post:
+      tags: [Assessment]
+      summary: Send one text turn to an assessment session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AssessmentChatRequest"
+      responses:
+        "200":
+          description: Assessment reply or completed result
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/AssessmentChatResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /assessment/speech/tts:
+    post:
+      tags: [Assessment]
+      summary: Convert assessment text to speech
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SpeechRequest"
+      responses:
+        "200":
+          description: MP3 audio stream
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /assessment/speech/stt:
+    post:
+      tags: [Assessment]
+      summary: Transcribe assessment audio to text
+      description: Accepts a complete audio file as a raw request body or multipart form field named audio.
+      parameters:
+        - in: query
+          name: module_id
+          schema:
+            type: string
+          required: false
+          description: Module ID used to select the transcription language.
+      requestBody:
+        required: true
+        content:
+          audio/webm:
+            schema:
+              type: string
+              format: binary
+          audio/wav:
+            schema:
+              type: string
+              format: binary
+          audio/mpeg:
+            schema:
+              type: string
+              format: binary
+          multipart/form-data:
+            schema:
+              type: object
+              required: [audio]
+              properties:
+                audio:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Transcribed text
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/TranscriptResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /assessment/voice:
+    get:
+      tags: [Assessment]
+      summary: Voice assessment WebSocket
+      description: Upgrade this endpoint to WebSocket. Client sends raw audio binary frames. Server sends JSON messages with type transcript, reply, result, or error, and binary MP3 TTS chunks.
+      parameters:
+        - name: module_id
+          in: query
+          required: true
+          schema:
+            type: string
+            example: mod-eng-ix-01-01
+      responses:
+        "101":
+          description: WebSocket upgrade
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "426":
+          description: Upgrade required
+
+  /learning/generate:
+    post:
+      tags: [Learning]
+      summary: Generate a student-specific learning path after assessment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateLearningPathRequest"
+      responses:
+        "200":
+          description: Generated learning path
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/LearningPath"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /learning/chat:
+    post:
+      tags: [Learning]
+      summary: Send one text turn to the AI tutor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LearningChatRequest"
+      responses:
+        "200":
+          description: Tutor reply
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/LearningChatResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /learning/start:
+    post:
+      tags: [Learning]
+      summary: Start a learning chat for a generated learning path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StartLearningChatRequest"
+      responses:
+        "200":
+          description: Opening tutor reply
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/LearningChatResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /learning/start-chat:
+    post:
+      tags: [Learning]
+      summary: Start a learning chat for a generated learning path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StartLearningChatRequest"
+      responses:
+        "200":
+          description: Opening tutor reply
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/LearningChatResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /learning/start-questions:
+    post:
+      tags: [Learning]
+      summary: Start comprehension questions after listening or reading material is complete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StartQuestionsRequest"
+      responses:
+        "200":
+          description: First material comprehension question
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/LearningChatResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /learning/speech/tts:
+    post:
+      tags: [Learning]
+      summary: Convert learning text to speech
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SpeechRequest"
+      responses:
+        "200":
+          description: MP3 audio stream
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /learning/speech/stt:
+    post:
+      tags: [Learning]
+      summary: Transcribe learning audio to text
+      description: Accepts a complete audio file as a raw request body or multipart form field named audio.
+      parameters:
+        - in: query
+          name: module_id
+          schema:
+            type: string
+          required: false
+          description: Module ID used to select the transcription language.
+      requestBody:
+        required: true
+        content:
+          audio/webm:
+            schema:
+              type: string
+              format: binary
+          audio/wav:
+            schema:
+              type: string
+              format: binary
+          audio/mpeg:
+            schema:
+              type: string
+              format: binary
+          multipart/form-data:
+            schema:
+              type: object
+              required: [audio]
+              properties:
+                audio:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Transcribed text
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/SuccessEnvelope"
+                  - type: object
+                    properties:
+                      data:
+                        $ref: "#/components/schemas/TranscriptResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /learning/voice:
+    get:
+      tags: [Learning]
+      summary: Voice learning WebSocket
+      description: Upgrade this endpoint to WebSocket. Client sends raw audio binary frames. Server sends JSON messages with type transcript, reply, or error, and binary MP3 TTS chunks.
+      parameters:
+        - name: learning_path_step_id
+          in: query
+          required: true
+          schema:
+            type: string
+            example: lp-7f9a1c2d3e4b5a60-step-1
+      responses:
+        "101":
+          description: WebSocket upgrade
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "426":
+          description: Upgrade required
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    SyllabusID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: syl-eng-ix-01
+    ModuleID:
+      name: moduleId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: mod-eng-ix-01-01
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorEnvelope"
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorEnvelope"
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorEnvelope"
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorEnvelope"
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorEnvelope"
+
+  schemas:
+    SuccessEnvelope:
+      type: object
+      required: [success, data]
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          nullable: true
+
+    ErrorEnvelope:
+      type: object
+      required: [success, message]
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: invalid request body
+
+    CEFRLevel:
+      type: string
+      enum: [A1, A2, B1, B2, C1, C2]
+
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+          example: umar@kaifa.com
+        password:
+          type: string
+          format: password
+          example: password
+
+    LoginResponse:
+      type: object
+      required:
+        - access_token
+        - refresh_token
+        - token_type
+        - access_token_expires_in
+        - refresh_token_expires_in
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        access_token_expires_in:
+          type: integer
+          format: int64
+          example: 900
+        refresh_token_expires_in:
+          type: integer
+          format: int64
+          example: 604800
+
+    RefreshTokenRequest:
+      type: object
+      required: [refresh_token]
+      properties:
+        refresh_token:
+          type: string
+
+    CreateUserRequest:
+      type: object
+      required: [email, full_name, dob, current_proficiency_level, password]
+      properties:
+        id:
+          type: string
+          description: Optional. Generated when omitted.
+          example: usr-123
+        email:
+          type: string
+          format: email
+          example: student@example.com
+        full_name:
+          type: string
+          example: Student Example
+        dob:
+          type: string
+          format: date
+          example: "2010-01-15"
+        gender:
+          type: string
+          example: female
+        role:
+          type: string
+          description: Defaults to student when omitted.
+          enum: [student, admin, tutor]
+          example: student
+        class:
+          type: string
+          description: Required when role is student.
+          example: IX
+        current_proficiency_level:
+          $ref: "#/components/schemas/CEFRLevel"
+        password:
+          type: string
+          format: password
+
+    User:
+      type: object
+      required: [id, email, full_name, dob, role, current_proficiency_level]
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        full_name:
+          type: string
+        dob:
+          type: string
+        gender:
+          type: string
+        role:
+          type: string
+          example: student
+        class:
+          type: string
+          example: IX
+        current_proficiency_level:
+          type: string
+
+    Syllabus:
+      type: object
+      required: [id, language, title, description, title_romanized, description_romanized, class, level, icon]
+      properties:
+        id:
+          type: string
+          example: syl-eng-ix-01
+        language:
+          type: string
+          example: english
+        title:
+          type: string
+          example: Unit 1 - Personal Identity & Social Interaction
+        description:
+          type: string
+          example: Kelas IX SMP Islam (CEFR A2 to B1)
+        title_romanized:
+          type: string
+          example: As-salamu alaykum
+        description_romanized:
+          type: string
+          example: At-tahiyyat wa at-taaruf
+        class:
+          type: string
+          example: IX
+        level:
+          type: array
+          items:
+            $ref: "#/components/schemas/CEFRLevel"
+          example: [A2, B1]
+        icon:
+          type: string
+          example: 👋
+        translations:
+          type: array
+          items:
+            $ref: "#/components/schemas/SyllabusTranslation"
+        modules:
+          type: array
+          items:
+            $ref: "#/components/schemas/Module"
+
+    SyllabusTranslation:
+      type: object
+      required: [id, syllabi_id, language, title, description]
+      properties:
+        id:
+          type: string
+          example: syl-eng-vii-01-bi
+        syllabi_id:
+          type: string
+          example: syl-eng-vii-01
+        language:
+          type: string
+          example: bahasa indonesia
+        title:
+          type: string
+        description:
+          type: string
+
+    Module:
+      type: object
+      required: [id, syllabus_id, language, title, description, topic_scope, status, order]
+      properties:
+        id:
+          type: string
+          example: mod-eng-ix-01-01
+        syllabus_id:
+          type: string
+          example: syl-eng-ix-01
+        language:
+          type: string
+          example: english
+        title:
+          type: string
+          example: Introducing Yourself
+        description:
+          type: string
+        title_romanized:
+          type: string
+          example: Ash-shakhsiyyah al-ula
+        description_romanized:
+          type: string
+          example: Ta'aruf wa al-tahiyyat
+        topic_scope:
+          type: string
+          example: Greetings & Islamic Etiquette, Personal Information, Talking About Yourself, Introducing Friends, Assessment
+        topic_scope_romanized:
+          type: string
+          example: al-tahiyyat, al-adab al-islami, al-ma'lumat al-shakhsiya, al-tahadduth 'an al-nafs, taqdeem al-ashab, al-ikhtibar
+        activities:
+          type: array
+          items:
+            type: string
+          example: [listening, speaking, ask questions]
+        activities_romanized:
+          type: array
+          items:
+            type: string
+          example: [al-istima', al-tahadduth, tarh al-as'ila]
+        vocabulary_load:
+          type: integer
+          example: 40
+        grammar_focus:
+          type: array
+          items:
+            type: string
+          example: [subject pronouns, simple present tense]
+        grammar_focus_romanized:
+          type: array
+          items:
+            type: string
+          example: [dama'ir al-fa'il, al-mudari' al-basit]
+        topic_scope_terms:
+          type: array
+          items:
+            type: string
+          example: [classroom, family, greeting]
+        estimation_duration_minutes:
+          type: integer
+          example: 30
+        mastery_threshold:
+          type: integer
+          example: 80
+        status:
+          type: string
+          enum: [available, locked, completed]
+          example: available
+        order:
+          type: integer
+          example: 1
+        translations:
+          type: array
+          items:
+            $ref: "#/components/schemas/ModuleTranslation"
+
+    ModuleTranslation:
+      type: object
+      required: [id, module_id, language, title, description, topic_scope]
+      properties:
+        id:
+          type: string
+          example: mod-eng-vii-01-bi
+        module_id:
+          type: string
+          example: mod-eng-vii-01
+        language:
+          type: string
+          example: bahasa indonesia
+        title:
+          type: string
+        description:
+          type: string
+        topic_scope:
+          type: string
+        activities:
+          type: array
+          items:
+            type: string
+        grammar_focus:
+          type: array
+          items:
+            type: string
+        topic_scope_terms:
+          type: array
+          items:
+            type: string
+
+    ModuleRequest:
+      type: object
+      required: [module_id]
+      properties:
+        module_id:
+          type: string
+          example: mod-eng-ix-01-01
+
+    AssessmentChatRequest:
+      type: object
+      required: [module_id, user_text]
+      properties:
+        module_id:
+          type: string
+          example: mod-eng-ix-01-01
+        user_text:
+          type: string
+          example: My name is Ahmad. Nice to meet you.
+
+    AssessmentChatResponse:
+      type: object
+      properties:
+        reply:
+          type: string
+          example: Nice to meet you. Can you introduce a friend now?
+        result:
+          $ref: "#/components/schemas/AssessmentResult"
+
+    AssessmentResult:
+      type: object
+      required: [cefr_level, level, score, title, summary, strengths, areas, translations]
+      properties:
+        cefr_level:
+          $ref: "#/components/schemas/CEFRLevel"
+        level:
+          $ref: "#/components/schemas/CEFRLevel"
+        score:
+          type: integer
+          minimum: 0
+          maximum: 100
+          example: 82
+        title:
+          type: string
+          example: MasyaAllah, You Are Awesome
+        summary:
+          type: string
+        strengths:
+          type: array
+          items:
+            type: string
+        areas:
+          type: array
+          items:
+            type: string
+        translations:
+          type: array
+          items:
+            type: object
+            required: [language, title, summary, strengths, areas]
+            properties:
+              language:
+                type: string
+                example: bahasa indonesia
+              title:
+                type: string
+              summary:
+                type: string
+              strengths:
+                type: array
+                items:
+                  type: string
+              areas:
+                type: array
+                items:
+                  type: string
+
+    SpeechRequest:
+      type: object
+      required: [user_text]
+      properties:
+        user_text:
+          type: string
+          example: Hello, welcome to today's lesson.
+
+    TranscriptResponse:
+      type: object
+      required: [text]
+      properties:
+        text:
+          type: string
+          example: Hello, welcome to today's lesson.
+
+    GenerateLearningPathRequest:
+      type: object
+      required: [module_id]
+      properties:
+        module_id:
+          type: string
+          example: mod-eng-ix-01-01
+
+    LearningChatRequest:
+      type: object
+      required: [learning_path_step_id, user_text]
+      properties:
+        learning_path_step_id:
+          type: string
+          example: lp-7f9a1c2d3e4b5a60-step-1
+        user_text:
+          type: string
+          example: I want to practice introducing myself.
+
+    StartLearningChatRequest:
+      type: object
+      required: [learning_path_step_id]
+      properties:
+        learning_path_step_id:
+          type: string
+          example: lp-7f9a1c2d3e4b5a60-step-1
+
+    StartQuestionsRequest:
+      type: object
+      required: [learning_path_step_id]
+      properties:
+        learning_path_step_id:
+          type: string
+          example: lp-7f9a1c2d3e4b5a60-step-1
+        material:
+          type: string
+          description: Optional when a generated listening paragraph is already saved in listening_state.
+        material_type:
+          type: string
+          enum: [listening, reading]
+          example: listening
+
+    LearningChatResponse:
+      type: object
+      required: [type, reply]
+      properties:
+        type:
+          type: string
+          enum: [chat, guardrail, listening_paragraph, listening_question, listening_assessment, material_required]
+          example: chat
+        reply:
+          type: string
+        paragraph:
+          type: string
+          description: Present when type is listening_paragraph. The generated listening passage should be 100-150 words. Frontend can send this text to TTS.
+        question_number:
+          type: integer
+          description: Present when type is listening_question.
+          example: 1
+        assessment:
+          $ref: "#/components/schemas/ListeningAssessment"
+        listening_state:
+          $ref: "#/components/schemas/LearningListeningState"
+
+    LearningListeningState:
+      type: object
+      properties:
+        phase:
+          type: string
+          enum: [awaiting_ready, asking, completed]
+          example: asking
+        material_type:
+          type: string
+          enum: [listening, reading]
+          example: listening
+        paragraph:
+          type: string
+        questions_asked:
+          type: integer
+          example: 2
+        answers:
+          type: array
+          items:
+            type: string
+
+    ListeningAssessment:
+      type: object
+      properties:
+        score:
+          type: integer
+          example: 82
+        summary:
+          type: string
+        strengths:
+          type: array
+          items:
+            type: string
+        areas:
+          type: array
+          items:
+            type: string
+
+    LearningPath:
+      type: object
+      required: [id, language, module_id, level, topic_scope, steps, total_steps]
+      properties:
+        id:
+          type: string
+          example: lp-7f9a1c2d3e4b5a60
+        language:
+          type: string
+          example: english
+        module_id:
+          type: string
+          example: mod-eng-ix-01-01
+        level:
+          $ref: "#/components/schemas/CEFRLevel"
+        topic_scope:
+          type: string
+        topic_scope_romanized:
+          type: string
+        steps:
+          type: array
+          items:
+            $ref: "#/components/schemas/LearningStep"
+        total_steps:
+          type: integer
+          example: 3
+        translations:
+          type: array
+          items:
+            $ref: "#/components/schemas/LearningPathTranslation"
+
+    LearningStep:
+      type: object
+      required: [id, order, activity, title, description, required_time, topic_scope, target, progress]
+      properties:
+        id:
+          type: string
+          example: lp-7f9a1c2d3e4b5a60-step-1
+        order:
+          type: integer
+          example: 1
+        activity:
+          type: string
+          example: speaking
+        activity_romanized:
+          type: string
+        title:
+          type: string
+        title_romanized:
+          type: string
+        description:
+          type: string
+        description_romanized:
+          type: string
+        required_time:
+          type: integer
+          description: Estimated time in minutes.
+          example: 10
+        topic_scope:
+          type: string
+          example: greetings and self-introduction
+        topic_scope_romanized:
+          type: string
+        target:
+          type: array
+          items:
+            type: string
+          example: [simple present tense, subject pronouns]
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          example: 0
+        translations:
+          type: array
+          items:
+            $ref: "#/components/schemas/LearningStepTranslation"
+
+    LearningPathTranslation:
+      type: object
+      required: [id, learning_path_id, language, topic_scope]
+      properties:
+        id:
+          type: string
+          example: lp-7f9a1c2d3e4b5a60-bi
+        learning_path_id:
+          type: string
+          example: lp-7f9a1c2d3e4b5a60
+        language:
+          type: string
+          example: bahasa indonesia
+        topic_scope:
+          type: string
+
+    LearningStepTranslation:
+      type: object
+      required: [id, learning_path_step_id, language, activity, title, description, topic_scope]
+      properties:
+        id:
+          type: string
+          example: lp-7f9a1c2d3e4b5a60-step-1-bi
+        learning_path_step_id:
+          type: string
+          example: lp-7f9a1c2d3e4b5a60-step-1
+        language:
+          type: string
+          example: bahasa indonesia
+        activity:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        topic_scope:
+          type: string
+
+    Message:
+      type: object
+      required: [role, content]
+      properties:
+        role:
+          type: string
+          enum: [user, assistant]
+        content:
+          type: string

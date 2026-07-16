@@ -1,0 +1,17 @@
+pnpm run type-check && pnpm run test
+
+echo "Running type check before push"
+
+pnpm run type-check ||
+(
+    echo "Type check failed. Please fix the errors!";
+    false;
+)
+
+echo "Running tests before push"
+
+pnpm run test ||
+(
+    echo "Some tests failed. Please fix them!";
+    false;
+)

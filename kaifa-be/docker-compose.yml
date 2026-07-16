@@ -1,0 +1,50 @@
+services:
+  api:
+    build: .
+    container_name: kaifa-be
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - PORT=8080
+      - DATABASE_URL=postgres://kaifa:kaifa@postgres:5432/kaifa?sslmode=disable
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - kaifa-network
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 8080 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: kaifa-postgres-local
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: kaifa
+      POSTGRES_USER: kaifa
+      POSTGRES_PASSWORD: kaifa
+    volumes:
+      - postgres_local_data:/var/lib/postgresql/data
+    networks:
+      - kaifa-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kaifa -d kaifa"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_local_data:
+
+networks:
+  kaifa-network:
+    driver: bridge

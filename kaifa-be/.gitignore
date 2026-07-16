@@ -1,0 +1,26 @@
+# Environment
+.env
+.env.local
+.env.production*
+
+# Deployment guide (internal only)
+DEPLOY.md
+
+# Build output
+/server
+/bin
+.tmp/
+*.test
+*.out
+*.coverprofile
+coverage/
+coverage.out
+tmp/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

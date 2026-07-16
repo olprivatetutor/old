@@ -1,0 +1,307 @@
+{
+    "syllabus": [
+        {
+            "id": "syl-arab-vii-01",
+            "language": "arabic",
+            "title": "السلام عليكم",
+            "description": "Greetings and Introductions",
+            "class": "VII",
+            "level": [
+                "A1",
+                "A2",
+                "B1"
+            ]
+        },
+        {
+            "id": "syl-arab-vii-02",
+            "language": "arabic",
+            "title": "My world, my day and my activity",
+            "description": "Students talk about their daily experiences at school, the library, and the canteen while expressing feelings, opinions, and routines.",
+            "class": "VII",
+            "level": [
+                "A1",
+                "A2",
+                "B1"
+            ]
+        },
+        {
+            "id": "syl-arab-vii-03",
+            "language": "arabic",
+            "title": "United in pride, bound by friendship",
+            "description": "Students describe Indonesia, its people, culture, and achievements while expressing pride in their country.",
+            "class": "VII",
+            "level": [
+                "A1",
+                "A2",
+                "B1"
+            ]
+        }
+    ],
+    "modules": [
+        {
+            "id": "mod-arab-vii-01",
+            "syllabus_id": "syl-arab-vii-01",
+            "language": "arabic",
+            "title": "Good morning, how are you",
+            "description": "Practice greeting with polite expression",
+            "activities": [
+                "listening",
+                "speaking",
+                "ask questions"
+            ],
+            "vocabulary_load": 40,
+            "grammar_focus": [
+                "greeting experience",
+                "subject pronouns",
+                "present tense",
+                "simple questions"
+            ],
+            "topic_scope": [
+                "greetings",
+                "greetings response",
+                "polite expression",
+                "personal information",
+                "pronouns"
+            ],
+            "status": "available",
+            "estimation_duration_minutes": 30,
+            "mastery_threshold": 80,
+            "order": 1
+        },
+        {
+            "id": "mod-arab-vii-02",
+            "syllabus_id": "syl-arab-vii-01",
+            "language": "arabic",
+            "title": "هذا أنا",
+            "description": "Introduce yourself, family and personal information",
+            "activities": [
+                "listening",
+                "speaking",
+                "ask questions"
+            ],
+            "vocabulary_load": 60,
+            "grammar_focus": [
+                "introducing yourself",
+                "possesive adjective",
+                "simple present",
+                "wh question"
+            ],
+            "topic_scope": [
+                "classroom",
+                "personal identity",
+                "family members",
+                "personal information"
+            ],
+            "status": "available",
+            "estimation_duration_minutes": 30,
+            "mastery_threshold": 80,
+            "order": 1
+        },
+        {
+            "id": "mod-arab-vii-03",
+            "syllabus_id": "syl-arab-vii-01",
+            "language": "arabic",
+            "title": "كم الساعة؟ ",
+            "description": "Practice telling time",
+            "activities": [
+                "listening",
+                "speaking",
+                "ask questions"
+            ],
+            "vocabulary_load": 100,
+            "grammar_focus": [
+                "telling time",
+                "simple present tense",
+                "daily routing",
+                "preposition of time"
+            ],
+            "topic_scope": [
+                "classroom",
+                "telling time",
+                "asking time",
+                "time expression",
+                "daily activities",
+                "numbers"
+            ],
+            "status": "available",
+            "estimation_duration_minutes": 30,
+            "mastery_threshold": 80,
+            "order": 1
+        },
+        {
+            "id": "mod-arab-vii-04",
+            "syllabus_id": "syl-arab-vii-02",
+            "language": "arabic",
+            "title": "This Is My World",
+            "description": "Students describe their school environment, classroom, library, and canteen using simple present tense and descriptive language.",
+            "activities": [
+                "listening",
+                "speaking",
+                "ask questions"
+            ],
+            "vocabulary_load": 60,
+            "grammar_focus": [
+                "simple present tense",
+                "there is and there are",
+                "demonstrative pronouns",
+                "describing places"
+            ],
+            "topic_scope": [
+                "school",
+                "classroom",
+                "library",
+                "canteen",
+                "teacher",
+                "student",
+                "book",
+                "food",
+                "facilities",
+                "daily school life"
+            ],
+            "status": "available",
+            "estimation_duration_minutes": 30,
+            "mastery_threshold": 80,
+            "order": 4
+        },
+        {
+            "id": "mod-arab-vii-05",
+            "syllabus_id": "syl-arab-vii-02",
+            "language": "arabic",
+            "title": "It's a Beautiful Day",
+            "description": "Students talk about their daily experiences at school, the library, and the canteen while expressing feelings, opinions, and routines.",
+            "activities": [
+                "listening",
+                "speaking",
+                "ask questions"
+            ],
+            "vocabulary_load": 80,
+            "grammar_focus": [
+                "simple present tense",
+                "adjectives",
+                "expressing feelings",
+                "frequency adverbs"
+            ],
+            "topic_scope": [
+                "school environment",
+                "library activities",
+                "canteen activities",
+                "daily routine",
+                "feelings",
+                "weather",
+                "beautiful day",
+                "friends",
+                "reading",
+                "studying"
+            ],
+            "status": "available",
+            "estimation_duration_minutes": 30,
+            "mastery_threshold": 80,
+            "order": 5
+        },
+        {
+            "id": "mod-arab-vii-06",
+            "syllabus_id": "syl-arab-vii-02",
+            "language": "arabic",
+            "title": "We Love What We Do",
+            "description": "Students explain activities they enjoy at school, in the library, and in the canteen, and describe why these activities are meaningful.",
+            "activities": [
+                "listening",
+                "speaking",
+                "ask questions"
+            ],
+            "vocabulary_load": 100,
+            "grammar_focus": [
+                "simple present tense",
+                "expressing likes and preferences",
+                "because clauses",
+                "subject and object pronouns"
+            ],
+            "topic_scope": [
+                "school activities",
+                "library",
+                "canteen",
+                "hobbies",
+                "interests",
+                "learning",
+                "reading",
+                "group activities",
+                "favorite subjects",
+                "personal preferences"
+            ],
+            "status": "available",
+            "estimation_duration_minutes": 30,
+            "mastery_threshold": 80,
+            "order": 6
+        },
+        {
+            "id": "mod-arab-vii-07",
+            "syllabus_id": "syl-arab-vii-03",
+            "language": "arabic",
+            "title": "I'm Proud of Indonesia",
+            "description": "Students describe Indonesia, its people, culture, and achievements while expressing pride in their country.",
+            "activities": [
+                "listening",
+                "speaking",
+                "ask questions"
+            ],
+            "vocabulary_load": 80,
+            "grammar_focus": [
+                "simple present tense",
+                "adjectives",
+                "expressing pride",
+                "giving simple reasons"
+            ],
+            "topic_scope": [
+                "Indonesia",
+                "national identity",
+                "culture",
+                "language",
+                "school",
+                "community",
+                "sports",
+                "achievement",
+                "flag",
+                "national pride"
+            ],
+            "status": "available",
+            "estimation_duration_minutes": 30,
+            "mastery_threshold": 80,
+            "order": 7
+        },
+        {
+            "id": "mod-arab-vii-08",
+            "syllabus_id": "syl-arab-vii-03",
+            "language": "arabic",
+            "title": "That's What Friends Are Supposed To Do",
+            "description": "Students discuss friendship, teamwork, and sportsmanship in school and sports environments.",
+            "activities": [
+                "listening",
+                "speaking",
+                "ask questions"
+            ],
+            "vocabulary_load": 100,
+            "grammar_focus": [
+                "modal should",
+                "simple present tense",
+                "giving advice",
+                "expressing responsibility"
+            ],
+            "topic_scope": [
+                "friendship",
+                "helping others",
+                "teamwork",
+                "school",
+                "soccer",
+                "badminton",
+                "basketball",
+                "sportsmanship",
+                "respect",
+                "fair play"
+            ],
+            "status": "available",
+            "estimation_duration_minutes": 30,
+            "mastery_threshold": 80,
+            "order": 8
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+set -eu
+
+echo "Running tests before push..."
+go test ./...
+
+echo "Pre-push checks passed."

@@ -1,0 +1,226 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --primary: #6366f1;
+  --primary-foreground: #ffffff;
+  --secondary: #10b981;
+  --secondary-foreground: #ffffff;
+  --accent: #fbbf24;
+  --accent-foreground: #0f172a;
+  --surface: #ffffff;
+  --muted: #f8fafc;
+  --muted-foreground: #475569;
+  --border: #e2e8f0;
+  --sidebar: #0f172a;
+  --sidebar-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes kaifa-voice-ring {
+  0% {
+    opacity: 0.56;
+    transform: scale(0.82);
+  }
+
+  72%,
+  100% {
+    opacity: 0;
+    transform: scale(1.75);
+  }
+}
+
+@keyframes kaifa-avatar-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes kaifa-voice-bar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+
+  45% {
+    transform: scaleY(1);
+  }
+}
+
+.kaifa-voice-ring {
+  animation: kaifa-voice-ring 1.55s ease-out infinite;
+}
+
+.kaifa-voice-ring-delayed {
+  animation-delay: 0.45s;
+}
+
+.kaifa-avatar-breathe {
+  animation: kaifa-avatar-breathe 1.4s ease-in-out infinite;
+}
+
+.kaifa-voice-bar {
+  animation: kaifa-voice-bar 0.72s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes kaifa-ai-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes kaifa-ai-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes kaifa-ai-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.88);
+  }
+
+  50% {
+    opacity: 0.72;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes kaifa-ai-eye {
+  0%,
+  88%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  92% {
+    transform: scaleY(0.18);
+  }
+}
+
+@keyframes kaifa-ai-chip {
+  0% {
+    opacity: 0;
+    transform: translate(-68px, 46px) scale(0.72);
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(68px, -48px) scale(1);
+  }
+}
+
+@keyframes kaifa-ai-scan {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(240%);
+  }
+}
+
+@keyframes kaifa-nav-robot {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.kaifa-ai-float {
+  animation: kaifa-ai-float 1.8s ease-in-out infinite;
+}
+
+.kaifa-ai-orbit {
+  animation: kaifa-ai-orbit 3.8s linear infinite;
+}
+
+.kaifa-ai-pulse {
+  animation: kaifa-ai-pulse 1.35s ease-in-out infinite;
+}
+
+.kaifa-ai-eye {
+  animation: kaifa-ai-eye 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.kaifa-ai-eye-delayed {
+  animation-delay: 0.08s;
+}
+
+.kaifa-ai-chip {
+  width: 0.9rem;
+  height: 0.55rem;
+  animation: kaifa-ai-chip 1.45s ease-in-out infinite;
+}
+
+.kaifa-ai-scan {
+  position: relative;
+}
+
+.kaifa-ai-scan::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+  animation: kaifa-ai-scan 1.25s ease-in-out infinite;
+}
+
+.kaifa-nav-robot {
+  animation: kaifa-nav-robot 0.7s ease-in-out infinite;
+  box-shadow: 0 2px 0 #49321d;
+}
