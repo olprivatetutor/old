@@ -24,12 +24,12 @@ function makeRequest(pathname: string, authToken?: string) {
 beforeEach(() => jest.clearAllMocks());
 
 describe('proxy middleware', () => {
-  it('redirects unauthenticated user from protected route to home', () => {
+  it('redirects unauthenticated user from protected route to login', () => {
     proxy(makeRequest('/admin'));
 
     expect(NextResponse.redirect).toHaveBeenCalled();
     const url = (NextResponse.redirect as jest.Mock).mock.calls[0][0] as URL;
-    expect(url.pathname).toBe('/');
+    expect(url.pathname).toBe('/login');
   });
 
   it('calls next() when authenticated user accesses protected route', () => {
@@ -42,8 +42,18 @@ describe('proxy middleware', () => {
     expect(NextResponse.next).toHaveBeenCalled();
   });
 
-  it('redirects authenticated user from home to languages', () => {
+  it('calls next() when authenticated user accesses home', () => {
     proxy(makeRequest('/', 'token123'));
+    expect(NextResponse.next).toHaveBeenCalled();
+  });
+
+  it('calls next() when unauthenticated user accesses login', () => {
+    proxy(makeRequest('/login'));
+    expect(NextResponse.next).toHaveBeenCalled();
+  });
+
+  it('redirects authenticated user from login to languages', () => {
+    proxy(makeRequest('/login', 'token123'));
 
     expect(NextResponse.redirect).toHaveBeenCalled();
     const url = (NextResponse.redirect as jest.Mock).mock.calls[0][0] as URL;
@@ -51,20 +61,20 @@ describe('proxy middleware', () => {
     expect(url.search).toBe('');
   });
 
-  it('redirects unauthenticated user from languages to home', () => {
+  it('redirects unauthenticated user from languages to login', () => {
     proxy(makeRequest('/languages'));
 
     expect(NextResponse.redirect).toHaveBeenCalled();
     const url = (NextResponse.redirect as jest.Mock).mock.calls[0][0] as URL;
-    expect(url.pathname).toBe('/');
+    expect(url.pathname).toBe('/login');
   });
 
-  it('redirects unauthenticated user from removed dashboard route to home', () => {
+  it('redirects unauthenticated user from removed dashboard route to login', () => {
     proxy(makeRequest('/dashboard'));
 
     expect(NextResponse.redirect).toHaveBeenCalled();
     const url = (NextResponse.redirect as jest.Mock).mock.calls[0][0] as URL;
-    expect(url.pathname).toBe('/');
+    expect(url.pathname).toBe('/login');
   });
 
   it.each(['/dashboard', '/dashboard/settings'])(
