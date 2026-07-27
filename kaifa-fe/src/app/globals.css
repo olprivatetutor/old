@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 
 :root {
   --background: #ffffff;
@@ -36,8 +37,68 @@
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-subtle: var(--subtle);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-rule: var(--rule);
+  --color-brand: var(--brand);
+  --color-brand-ai: var(--brand-ai);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-violet: var(--brand-violet);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-landing-sans);
+}
+
+/*
+ * Landing page design system, scoped to `.landing-theme` so it never
+ * leaks into the app's shared UI (Button, Input, dashboard, etc.), which
+ * use the :root tokens above with different values.
+ */
+.landing-theme {
+  --background: #faf7f2;
+  --foreground: #1f2937;
+  --card: #ffffff;
+  --card-foreground: #1f2937;
+  --popover: #ffffff;
+  --popover-foreground: #1f2937;
+  --primary: #274029;
+  --primary-foreground: #faf7f2;
+  --secondary: #624f8c;
+  --secondary-foreground: #faf7f2;
+  --muted: #f4f0e9;
+  --muted-foreground: #6b7280;
+  --accent: #f2ae2e;
+  --accent-foreground: #1f2937;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e8e3dc;
+  --input: #e8e3dc;
+  --ring: #274029;
+  --surface: #ffffff;
+  --subtle: #f4f0e9;
+  --ink: #1f2937;
+  --ink-muted: #6b7280;
+  --rule: #e8e3dc;
+  --brand: #274029;
+  --brand-ai: #624f8c;
+  --brand-accent: #f2ae2e;
+  --brand-blue: #7c9be0;
+  --brand-violet: #a48fd8;
+  --gradient-hero: linear-gradient(135deg, #274029 0%, #3a5a3d 100%);
+  --gradient-soft: linear-gradient(180deg, #faf7f2 0%, #f4f0e9 100%);
+  --gradient-cta: linear-gradient(135deg, #2f4c32 0%, #274029 45%, #3f3560 100%);
+  --gradient-mesh:
+    radial-gradient(60% 55% at 12% 8%, rgba(124, 155, 224, 0.28) 0%, transparent 60%),
+    radial-gradient(50% 50% at 88% 4%, rgba(164, 143, 216, 0.3) 0%, transparent 62%),
+    radial-gradient(55% 60% at 70% 90%, rgba(39, 64, 41, 0.14) 0%, transparent 65%);
 }
 
 .scrollbar-none {
