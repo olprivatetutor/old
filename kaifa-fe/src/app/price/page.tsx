@@ -16,6 +16,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Harga() {
+export default function Price() {
   return <PricingPage />;
 }

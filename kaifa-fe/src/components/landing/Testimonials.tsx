@@ -7,25 +7,25 @@ const testimonials = [
   {
     quote:
       'Kaifa membuat belajar bahasa jadi lebih terarah dan menyenangkan. AI Companion-nya benar-benar seperti guru pribadi yang selalu ada.',
-    name: 'Hamdi Mulya',
+    name: 'Alma',
     role: 'Kelas X',
-    initials: 'HM',
+    initials: 'AA',
     gradient: 'from-primary to-secondary',
   },
   {
     quote:
       'Latihan speaking-nya bikin saya lebih percaya diri. Feedback-nya langsung, jadi tahu bagian mana yang perlu diperbaiki.',
-    name: 'Nadia Ayu',
-    role: 'Kelas XI',
+    name: 'Nara',
+    role: 'Kelas XII',
     initials: 'NA',
     gradient: 'from-secondary to-brand-blue',
   },
   {
     quote:
       'Sebagai guru, dashboard progress-nya sangat membantu memantau perkembangan siswa tiap minggu.',
-    name: 'Ustadz Fikri',
-    role: 'Guru Bahasa Arab',
-    initials: 'UF',
+    name: 'Ustadz Ramdhan Ali Mantiri',
+    role: 'Founder & Pengasuh Mahir Bil Quran - Talaqqi Quran Center',
+    initials: 'RA',
     gradient: 'from-brand-blue to-primary',
   },
 ];

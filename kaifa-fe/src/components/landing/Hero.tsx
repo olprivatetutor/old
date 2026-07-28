@@ -2,12 +2,32 @@
 
 import Image from 'next/image';
 import { motion } from 'motion/react';
-import { ArrowRight, Bot, GraduationCap, Play, ScrollText, ShieldCheck, Sparkles } from 'lucide-react';
+import {
+  ArrowRight,
+  Bot,
+  GraduationCap,
+  Play,
+  ScrollText,
+  ShieldCheck,
+  Sparkles,
+} from 'lucide-react';
 import { CtaButton, Glow, Reveal } from './primitives';
 
 const chips = [
-  { title: 'اللغة العربية', sub: 'Bahasa Arab', className: 'left-0 top-6 sm:left-2', tone: 'text-primary', delay: 0.1 },
-  { title: 'English', sub: 'Language', className: '-left-2 top-32 sm:left-0', tone: 'text-secondary', delay: 0.25 },
+  {
+    title: 'اللغة العربية',
+    sub: 'Bahasa Arab',
+    className: 'left-0 top-6 sm:left-2',
+    tone: 'text-primary',
+    delay: 0.1,
+  },
+  {
+    title: 'English',
+    sub: 'Language',
+    className: '-left-2 top-32 sm:left-0',
+    tone: 'text-secondary',
+    delay: 0.25,
+  },
 ];
 
 const trust = [
@@ -18,8 +38,14 @@ const trust = [
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden px-4 pt-28 pb-16 sm:px-6 lg:pt-32 lg:pb-24">
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[image:var(--gradient-mesh)]" />
+    <section
+      id="top"
+      className="relative overflow-hidden px-4 pt-28 pb-16 sm:px-6 lg:pt-32 lg:pb-24"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[image:var(--gradient-mesh)]"
+      />
       <Glow className="bg-brand-blue/25 top-[-8%] left-[-10%] h-[420px] w-[420px]" />
       <Glow className="bg-brand-violet/25 top-[4%] right-[-8%] h-[460px] w-[460px]" />
 
@@ -34,14 +60,14 @@ export function Hero() {
             </span>
           </Reveal>
 
-          <h1 className="font-display text-ink mt-6 text-balance text-[38px] leading-[1.06] font-extrabold tracking-[-0.045em] sm:text-[52px] lg:text-[58px]">
+          <h1 className="font-display text-ink mt-6 text-[38px] leading-[1.06] font-extrabold tracking-[-0.045em] text-balance sm:text-[52px] lg:text-[58px]">
             <motion.span
               initial={{ opacity: 0, y: 26, filter: 'blur(12px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               className="text-primary block"
             >
-              Belajar <span dir="rtl">العربية</span>
+              Belajar <span dir="rtl">Bahasa Arab</span>
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 26, filter: 'blur(12px)' }}
@@ -57,21 +83,24 @@ export function Hero() {
               transition={{ duration: 0.9, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
               className="block"
             >
-              <span className="text-secondary">Interaktif</span> <span className="text-accent">dan Bermakna</span>
+              <span className="text-secondary">Interaktif</span>{' '}
+              <span className="text-accent">dan Bermakna</span>
             </motion.span>
           </h1>
 
           <Reveal delay={0.22}>
-            <p className="text-ink-muted mt-6 max-w-xl text-pretty text-[16.5px] leading-[1.75]">
-              Kaifa adalah platform pembelajaran pendamping berbasis AI untuk pelajar Muslim Indonesia
-              (Kelas VII–XII) agar belajar bahasa lebih efektif dan sesuai nilai-nilai Islam.
+            <p className="text-ink-muted mt-6 max-w-xl text-[16.5px] leading-[1.75] text-pretty">
+              Kaifa adalah platform pembelajaran pendamping berbasis AI untuk pelajar Muslim
+              Indonesia (Kelas VII–XII) agar belajar bahasa lebih efektif dan sesuai nilai-nilai
+              Islam.
             </p>
           </Reveal>
 
           <Reveal delay={0.3}>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <CtaButton href="/login">
-                Mulai Belajar Gratis <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                Mulai Belajar{' '}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </CtaButton>
               <CtaButton href="#how" variant="ghost">
                 <Play className="h-3.5 w-3.5 fill-current" /> Lihat Cara Kerja

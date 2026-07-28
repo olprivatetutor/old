@@ -137,13 +137,13 @@ export function SectionHeading({
         </Reveal>
       ) : null}
       <Reveal delay={0.06}>
-        <h2 className="font-display text-ink text-balance text-[34px] leading-[1.08] font-bold tracking-[-0.03em] sm:text-[44px] lg:text-[52px]">
+        <h2 className="font-display text-ink text-[34px] leading-[1.08] font-bold tracking-[-0.03em] text-balance sm:text-[44px] lg:text-[52px]">
           {title}
         </h2>
       </Reveal>
       {desc ? (
         <Reveal delay={0.12}>
-          <p className="text-ink-muted max-w-xl text-pretty text-[16px] leading-[1.7] sm:text-[17px]">
+          <p className="text-ink-muted max-w-xl text-[16px] leading-[1.7] text-pretty sm:text-[17px]">
             {desc}
           </p>
         </Reveal>
@@ -178,7 +178,10 @@ export function GlassCard({
 
 export function Glow({ className }: { className?: string }) {
   return (
-    <div aria-hidden className={cn('pointer-events-none absolute rounded-full blur-[110px]', className)} />
+    <div
+      aria-hidden
+      className={cn('pointer-events-none absolute rounded-full blur-[110px]', className)}
+    />
   );
 }
 

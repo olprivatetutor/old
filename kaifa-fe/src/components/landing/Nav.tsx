@@ -11,7 +11,7 @@ const links = [
   { label: 'Beranda', href: '/#top' },
   { label: 'Fitur', href: '/#features' },
   { label: 'Kurikulum', href: '/#kurikulum' },
-  { label: 'Harga', href: '/harga' },
+  { label: 'Harga', href: '/price' },
   { label: 'Cara Kerja', href: '/#how' },
   { label: 'FAQ', href: '/#faq' },
 ];
