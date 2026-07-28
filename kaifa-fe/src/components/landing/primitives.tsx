@@ -1,10 +1,45 @@
 'use client';
 
-import { motion, type Variants } from 'motion/react';
-import type { ReactNode } from 'react';
+import { animate, motion, useInView, type Variants } from 'motion/react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { cn } from '@/lib/utils/cn';
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+export function CountUp({
+  value,
+  decimals = 0,
+  suffix = '',
+  duration = 1.8,
+  className,
+}: {
+  value: number;
+  decimals?: number;
+  suffix?: string;
+  duration?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-70px' });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const controls = animate(0, value, {
+      duration,
+      ease,
+      onUpdate: (v) => setDisplay(v),
+    });
+    return () => controls.stop();
+  }, [isInView, value, duration]);
+
+  return (
+    <span ref={ref} className={className}>
+      {display.toFixed(decimals)}
+      {suffix}
+    </span>
+  );
+}
 
 export function Reveal({
   children,

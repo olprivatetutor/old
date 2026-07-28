@@ -1,13 +1,13 @@
 'use client';
 
 import { Award, BookOpen, Star, Users } from 'lucide-react';
-import { Stagger, StaggerItem } from './primitives';
+import { CountUp, Stagger, StaggerItem } from './primitives';
 
 const stats = [
-  { icon: Users, value: '50K+', label: 'Pelajar Aktif' },
-  { icon: BookOpen, value: '1M+', label: 'Lesson Selesai' },
-  { icon: Award, value: '20K+', label: 'Pencapaian Diraih' },
-  { icon: Star, value: '4.8/5', label: 'Rating Pengguna' },
+  { icon: Users, value: 50, decimals: 0, suffix: 'K+', label: 'Pelajar Aktif' },
+  { icon: BookOpen, value: 1, decimals: 0, suffix: 'M+', label: 'Lesson Selesai' },
+  { icon: Award, value: 20, decimals: 0, suffix: 'K+', label: 'Pencapaian Diraih' },
+  { icon: Star, value: 4.8, decimals: 1, suffix: '/5', label: 'Rating Pengguna' },
 ];
 
 export function StatsBar() {
@@ -21,9 +21,12 @@ export function StatsBar() {
                 <s.icon className="h-5 w-5" />
               </span>
               <span>
-                <span className="font-display text-ink block text-[22px] font-extrabold tracking-[-0.03em]">
-                  {s.value}
-                </span>
+                <CountUp
+                  value={s.value}
+                  decimals={s.decimals}
+                  suffix={s.suffix}
+                  className="font-display text-ink block text-[22px] font-extrabold tracking-[-0.03em]"
+                />
                 <span className="text-ink-muted block text-[13px]">{s.label}</span>
               </span>
             </div>
