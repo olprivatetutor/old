@@ -4,10 +4,10 @@ import { Award, BookOpen, Star, Users } from 'lucide-react';
 import { CountUp, Stagger, StaggerItem } from './primitives';
 
 const stats = [
-  { icon: Users, value: 50, decimals: 0, suffix: 'K+', label: 'Pelajar Aktif' },
-  { icon: BookOpen, value: 1, decimals: 0, suffix: 'M+', label: 'Lesson Selesai' },
-  { icon: Award, value: 20, decimals: 0, suffix: 'K+', label: 'Pencapaian Diraih' },
-  { icon: Star, value: 4.8, decimals: 1, suffix: '/5', label: 'Rating Pengguna' },
+  { icon: Users, value: 8, decimals: 0, suffix: '', label: 'Pelajar Aktif' },
+  { icon: BookOpen, value: 16, decimals: 0, suffix: '', label: 'Lesson Selesai' },
+  { icon: Award, value: 2, decimals: 0, suffix: '', label: 'Pencapaian Diraih' },
+  { icon: Star, value: 4.7, decimals: 1, suffix: '/5', label: 'Rating Pengguna' },
 ];
 
 export function StatsBar() {

@@ -62,12 +62,12 @@ describe('proxy middleware', () => {
   });
 
   it('calls next() when unauthenticated user accesses the pricing page', () => {
-    proxy(makeRequest('/harga'));
+    proxy(makeRequest('/price'));
     expect(NextResponse.next).toHaveBeenCalled();
   });
 
   it('calls next() when authenticated user accesses the pricing page', () => {
-    proxy(makeRequest('/harga', 'token123'));
+    proxy(makeRequest('/price', 'token123'));
     expect(NextResponse.next).toHaveBeenCalled();
   });
 

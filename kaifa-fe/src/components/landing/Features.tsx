@@ -12,7 +12,7 @@ const features = [
   },
   {
     icon: Mic,
-    title: 'Speaking & Percakapan',
+    title: 'Percakapan',
     desc: 'Latihan berbicara dengan situasi nyata dan umpan balik instan dari AI.',
     tone: 'bg-[color-mix(in_oklab,var(--secondary)_12%,var(--surface))] text-secondary',
   },

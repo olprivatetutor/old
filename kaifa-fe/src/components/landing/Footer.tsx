@@ -3,7 +3,10 @@ import { Logo } from './Logo';
 
 const columns = [
   { title: 'Navigasi', links: ['Beranda', 'Fitur', 'Kurikulum', 'Blog', 'FAQ'] },
-  { title: 'Perusahaan', links: ['Tentang Kami', 'Karier', 'Kontak', 'Kebijakan Privasi', 'Syarat & Ketentuan'] },
+  {
+    title: 'Perusahaan',
+    links: ['Tentang Kami', 'Karier', 'Kontak', 'Kebijakan Privasi', 'Syarat & Ketentuan'],
+  },
 ];
 
 const socials = [
@@ -22,8 +25,7 @@ export function Footer() {
             <Logo />
             <p className="text-ink-muted mt-4 max-w-xs text-[14px] leading-[1.7]">
               Platform pembelajaran pendamping berbasis AI untuk pelajar Muslim Indonesia. Belajar
-              <span dir="rtl"> العربية </span>
-              dan Bahasa Inggris lebih mudah dan bermakna.
+              Bahasa Arab dan Bahasa Inggris lebih mudah dan bermakna.
             </p>
             <div className="mt-6 flex gap-2">
               {socials.map((s) => (
@@ -41,11 +43,16 @@ export function Footer() {
 
           {columns.map((c) => (
             <nav key={c.title}>
-              <p className="text-ink text-[11.5px] font-semibold tracking-[0.16em] uppercase">{c.title}</p>
+              <p className="text-ink text-[11.5px] font-semibold tracking-[0.16em] uppercase">
+                {c.title}
+              </p>
               <ul className="mt-4 space-y-2.5">
                 {c.links.map((l) => (
                   <li key={l}>
-                    <a href="#top" className="text-ink-muted hover:text-ink text-[14px] transition-colors">
+                    <a
+                      href="#top"
+                      className="text-ink-muted hover:text-ink text-[14px] transition-colors"
+                    >
                       {l}
                     </a>
                   </li>
@@ -55,8 +62,12 @@ export function Footer() {
           ))}
 
           <div>
-            <p className="text-ink text-[11.5px] font-semibold tracking-[0.16em] uppercase">Unduh Aplikasi</p>
-            <p className="text-ink-muted mt-4 text-[14px] leading-[1.7]">Belajar di mana saja, kapan saja.</p>
+            <p className="text-ink text-[11.5px] font-semibold tracking-[0.16em] uppercase">
+              Unduh Aplikasi
+            </p>
+            <p className="text-ink-muted mt-4 text-[14px] leading-[1.7]">
+              Belajar di mana saja, kapan saja.
+            </p>
             <div className="mt-4 flex flex-col gap-2">
               {['Google Play', 'App Store'].map((store) => (
                 <a
@@ -72,8 +83,12 @@ export function Footer() {
         </div>
 
         <div className="border-rule/70 mt-14 flex flex-col items-center justify-between gap-3 border-t pt-6 sm:flex-row">
-          <p className="text-ink-muted text-[13px]">© {new Date().getFullYear()} Kaifa. Hak cipta dilindungi.</p>
-          <p className="text-ink-muted text-[13px]">Dirancang dan dibangun untuk learner di mana saja.</p>
+          <p className="text-ink-muted text-[13px]">
+            © {new Date().getFullYear()} Kaifa. Hak cipta dilindungi.
+          </p>
+          <p className="text-ink-muted text-[13px]">
+            Dirancang dan dibangun untuk learner di mana saja.
+          </p>
         </div>
       </div>
     </footer>

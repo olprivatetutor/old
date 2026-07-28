@@ -19,23 +19,23 @@ export function FinalCta() {
             className="pointer-events-none absolute right-0 -bottom-6 h-40 w-auto opacity-15 sm:h-56"
           />
           <div className="relative max-w-xl">
-            <h2 className="font-display text-primary-foreground text-balance text-[30px] leading-[1.1] font-extrabold tracking-[-0.035em] sm:text-[38px]">
+            <h2 className="font-display text-primary-foreground text-[30px] leading-[1.1] font-extrabold tracking-[-0.035em] text-balance sm:text-[38px]">
               Siap memulai perjalanan belajarmu?
             </h2>
             <p className="text-primary-foreground/80 mt-4 text-[15.5px] leading-[1.75]">
-              Bergabung sekarang dan rasakan pengalaman belajar bahasa yang lebih cerdas, interaktif, dan
-              bermakna.
+              Bergabung sekarang dan rasakan pengalaman belajar bahasa yang lebih cerdas,
+              interaktif, dan bermakna.
             </p>
           </div>
           <div className="relative flex flex-col items-start gap-3 lg:items-center">
             <a
               href="/login"
-              className="group bg-accent text-accent-foreground h-13 inline-flex items-center gap-2 rounded-full px-7 text-[15.5px] font-bold shadow-[0_18px_40px_-18px_rgba(0,0,0,0.6)] transition-transform hover:-translate-y-0.5"
+              className="group bg-accent text-accent-foreground inline-flex h-13 items-center gap-2 rounded-full px-7 text-[15.5px] font-bold shadow-[0_18px_40px_-18px_rgba(0,0,0,0.6)] transition-transform hover:-translate-y-0.5"
             >
               Daftar Gratis Sekarang
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
-            <p className="text-primary-foreground/70 text-[12.5px]">100% gratis untuk memulai</p>
+            <p className="text-primary-foreground/70 text-[12.5px]"> </p>
           </div>
         </div>
       </Reveal>
