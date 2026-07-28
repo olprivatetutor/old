@@ -3,12 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
-  --primary: #6366f1;
-  --primary-foreground: #ffffff;
-  --secondary: #10b981;
-  --secondary-foreground: #ffffff;
-  --accent: #fbbf24;
-  --accent-foreground: #0f172a;
+  --primary: #274029;
+  --primary-foreground: #faf7f2;
+  --secondary: #624f8c;
+  --secondary-foreground: #faf7f2;
+  --accent: #f2ae2e;
+  --accent-foreground: #1f2937;
   --surface: #ffffff;
   --muted: #f8fafc;
   --muted-foreground: #475569;
@@ -17,6 +17,18 @@
   --sidebar-foreground: #ffffff;
   --destructive: #dc2626;
   --destructive-foreground: #ffffff;
+  --brand: var(--primary);
+  --subtle: #f4f0e9;
+  --ink: #1f2937;
+  --ink-muted: #6b7280;
+  --rule: #e8e3dc;
+  --brand-blue: #7c9be0;
+  --brand-violet: #a48fd8;
+  --gradient-mesh:
+    radial-gradient(60% 55% at 12% 8%, rgba(124, 155, 224, 0.28) 0%, transparent 60%),
+    radial-gradient(50% 50% at 88% 4%, rgba(164, 143, 216, 0.3) 0%, transparent 62%),
+    radial-gradient(55% 60% at 70% 90%, rgba(39, 64, 41, 0.14) 0%, transparent 65%);
+  --gradient-cta: linear-gradient(135deg, #2f4c32 0%, #274029 45%, #3f3560 100%);
 }
 
 @theme inline {
@@ -36,8 +48,35 @@
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-subtle: var(--subtle);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-rule: var(--rule);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-violet: var(--brand-violet);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
 }
 
 .scrollbar-none {

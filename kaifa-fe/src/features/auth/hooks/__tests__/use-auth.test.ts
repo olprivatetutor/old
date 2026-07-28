@@ -97,7 +97,7 @@ describe('useAuth', () => {
   });
 
   describe('logout', () => {
-    it('calls logoutService, clearAuth, and redirects to home', async () => {
+    it('calls logoutService, clearAuth, and redirects to login', async () => {
       mockLogoutService.mockResolvedValueOnce(undefined);
       const { result } = renderHook(() => useAuth(), { wrapper: createWrapper() });
 
@@ -107,7 +107,7 @@ describe('useAuth', () => {
 
       expect(mockLogoutService).toHaveBeenCalled();
       expect(mockClearAuth).toHaveBeenCalled();
-      expect(mockPush).toHaveBeenCalledWith('/');
+      expect(mockPush).toHaveBeenCalledWith('/login');
     });
   });
 });

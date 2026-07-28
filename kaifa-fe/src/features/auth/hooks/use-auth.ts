@@ -32,7 +32,7 @@ export function useAuth() {
     onSuccess: () => {
       clearAuth();
       queryClient.clear();
-      router.push('/');
+      router.push('/login');
     },
   });
 
