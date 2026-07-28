@@ -61,6 +61,16 @@ describe('proxy middleware', () => {
     expect(NextResponse.next).toHaveBeenCalled();
   });
 
+  it('calls next() when unauthenticated user accesses the pricing page', () => {
+    proxy(makeRequest('/harga'));
+    expect(NextResponse.next).toHaveBeenCalled();
+  });
+
+  it('calls next() when authenticated user accesses the pricing page', () => {
+    proxy(makeRequest('/harga', 'token123'));
+    expect(NextResponse.next).toHaveBeenCalled();
+  });
+
   it('redirects unauthenticated user from languages to login', () => {
     proxy(makeRequest('/languages'));
 

@@ -8,11 +8,12 @@ import { CtaButton } from './primitives';
 import { Logo } from './Logo';
 
 const links = [
-  { label: 'Beranda', href: '#top' },
-  { label: 'Fitur', href: '#features' },
-  { label: 'Kurikulum', href: '#kurikulum' },
-  { label: 'Cara Kerja', href: '#how' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Beranda', href: '/#top' },
+  { label: 'Fitur', href: '/#features' },
+  { label: 'Kurikulum', href: '/#kurikulum' },
+  { label: 'Harga', href: '/harga' },
+  { label: 'Cara Kerja', href: '/#how' },
+  { label: 'FAQ', href: '/#faq' },
 ];
 
 export function Nav() {
@@ -36,9 +37,9 @@ export function Nav() {
             : 'border-transparent bg-transparent',
         )}
       >
-        <a href="#top" aria-label="Kaifa">
+        <Link href="/#top" aria-label="Kaifa">
           <Logo />
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-1 lg:flex">
           {links.map((l) => (
