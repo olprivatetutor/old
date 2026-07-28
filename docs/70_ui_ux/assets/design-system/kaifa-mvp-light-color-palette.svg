@@ -1,0 +1,315 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1480" role="img" aria-labelledby="title desc">
+  <title id="title">Kaifa MVP Light Theme Color Palette</title>
+  <desc id="desc">Visual preview of the Kaifa MVP light theme color tokens. Textual token values in the Design System remain canonical.</desc>
+  <defs>
+    <pattern id="checker" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#FFFFFF"/>
+      <rect width="6" height="6" fill="#E5E7EB"/>
+      <rect x="6" y="6" width="6" height="6" fill="#E5E7EB"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="1480" fill="#FAF7F2"/>
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" fill="#1F2937">
+    <text x="25" y="46" font-size="30" font-weight="700">Kaifa MVP Light Theme</text>
+    <text x="25" y="76" font-size="15" fill="#6B7280">Visual preview only — textual token values in 76_design_system.md are canonical.</text>
+  <g transform="translate(25 112)">
+    <rect width="560" height="308" rx="12" fill="#FFFFFF" stroke="#D1D5DB"/>
+    <text x="18" y="30" font-size="19" font-weight="700">Foundation</text>
+    <g transform="translate(14 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#FAF7F2" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.background.default</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#FAF7F2</text>
+    </g>
+    <g transform="translate(286 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#F4F0E9" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.background.subtle</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#F4F0E9</text>
+    </g>
+    <g transform="translate(14 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#FFFFFF" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.surface.default</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#FFFFFF</text>
+    </g>
+    <g transform="translate(286 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#FFFFFF" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.surface.elevated</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#FFFFFF</text>
+    </g>
+    <g transform="translate(14 210)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#E8E3DC" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.border.default</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#E8E3DC</text>
+    </g>
+    <g transform="translate(286 210)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#4F8EF7" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.border.focus</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#4F8EF7</text>
+    </g>
+  </g>
+  <g transform="translate(25 434)">
+    <rect width="560" height="226" rx="12" fill="#FFFFFF" stroke="#D1D5DB"/>
+    <text x="18" y="30" font-size="19" font-weight="700">Primary Actions</text>
+    <g transform="translate(14 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#274029" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.action.primary</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#274029</text>
+    </g>
+    <g transform="translate(286 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#355A38" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.action.primaryHover</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#355A38</text>
+    </g>
+    <g transform="translate(14 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#1E3120" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.action.primaryPressed</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#1E3120</text>
+    </g>
+    <g transform="translate(286 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#FFFFFF" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.action.onPrimary</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#FFFFFF</text>
+    </g>
+  </g>
+  <g transform="translate(25 674)">
+    <rect width="560" height="226" rx="12" fill="#FFFFFF" stroke="#D1D5DB"/>
+    <text x="18" y="30" font-size="19" font-weight="700">Accent</text>
+    <g transform="translate(14 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#F2AE2E" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.accent.default</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#F2AE2E</text>
+    </g>
+    <g transform="translate(286 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#F4BB4B" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.accent.hover</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#F4BB4B</text>
+    </g>
+    <g transform="translate(14 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#D89213" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.accent.pressed</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#D89213</text>
+    </g>
+    <g transform="translate(286 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#FCE9B8" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.accent.soft</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#FCE9B8</text>
+    </g>
+  </g>
+  <g transform="translate(25 914)">
+    <rect width="560" height="308" rx="12" fill="#FFFFFF" stroke="#D1D5DB"/>
+    <text x="18" y="30" font-size="19" font-weight="700">AI Experience</text>
+    <g transform="translate(14 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#624F8C" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.ai.practice</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#624F8C</text>
+    </g>
+    <g transform="translate(286 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#F4F0FA" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.ai.background</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#F4F0FA</text>
+    </g>
+    <g transform="translate(14 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#ECE6F7" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.ai.message</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#ECE6F7</text>
+    </g>
+    <g transform="translate(286 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#274029" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.ai.userMessage</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#274029</text>
+    </g>
+    <g transform="translate(14 210)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#FFFFFF" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.ai.onUserMessage</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#FFFFFF</text>
+    </g>
+  </g>
+  <g transform="translate(25 1236)">
+    <rect width="560" height="226" rx="12" fill="#FFFFFF" stroke="#D1D5DB"/>
+    <text x="18" y="30" font-size="19" font-weight="700">Progress and Learning</text>
+    <g transform="translate(14 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#E8E3DC" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.progress.track</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#E8E3DC</text>
+    </g>
+    <g transform="translate(286 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#274029" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.progress.fill</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#274029</text>
+    </g>
+    <g transform="translate(14 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#F2AE2E" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.progress.highlight</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#F2AE2E</text>
+    </g>
+    <g transform="translate(286 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#4CAF50" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.progress.complete</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#4CAF50</text>
+    </g>
+  </g>
+  <g transform="translate(615 112)">
+    <rect width="560" height="226" rx="12" fill="#FFFFFF" stroke="#D1D5DB"/>
+    <text x="18" y="30" font-size="19" font-weight="700">Text</text>
+    <g transform="translate(14 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#1F2937" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.text.primary</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#1F2937</text>
+    </g>
+    <g transform="translate(286 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#6B7280" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.text.secondary</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#6B7280</text>
+    </g>
+    <g transform="translate(14 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#9CA3AF" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.text.disabled</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#9CA3AF</text>
+    </g>
+    <g transform="translate(286 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#FFFFFF" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.text.inverse</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#FFFFFF</text>
+    </g>
+  </g>
+  <g transform="translate(615 352)">
+    <rect width="560" height="226" rx="12" fill="#FFFFFF" stroke="#D1D5DB"/>
+    <text x="18" y="30" font-size="19" font-weight="700">AI Secondary Actions</text>
+    <g transform="translate(14 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#624F8C" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.action.secondary</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#624F8C</text>
+    </g>
+    <g transform="translate(286 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#7460A2" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.action.secondaryHover</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#7460A2</text>
+    </g>
+    <g transform="translate(14 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#4C3D6D" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.action.secondaryPressed</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#4C3D6D</text>
+    </g>
+    <g transform="translate(286 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#FFFFFF" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.action.onSecondary</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#FFFFFF</text>
+    </g>
+  </g>
+  <g transform="translate(615 592)">
+    <rect width="560" height="226" rx="12" fill="#FFFFFF" stroke="#D1D5DB"/>
+    <text x="18" y="30" font-size="19" font-weight="700">Semantic Status</text>
+    <g transform="translate(14 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#4CAF50" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.status.success</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#4CAF50</text>
+    </g>
+    <g transform="translate(286 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#F59E0B" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.status.warning</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#F59E0B</text>
+    </g>
+    <g transform="translate(14 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#E53935" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.status.error</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#E53935</text>
+    </g>
+    <g transform="translate(286 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#4A7FA7" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.status.info</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#4A7FA7</text>
+    </g>
+  </g>
+  <g transform="translate(615 832)">
+    <rect width="560" height="226" rx="12" fill="#FFFFFF" stroke="#D1D5DB"/>
+    <text x="18" y="30" font-size="19" font-weight="700">Assessment</text>
+    <g transform="translate(14 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#4A7FA7" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.assessment.readOnly</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#4A7FA7</text>
+    </g>
+    <g transform="translate(286 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#EDF5FA" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.assessment.background</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#EDF5FA</text>
+    </g>
+    <g transform="translate(14 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#BFD8E8" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.assessment.border</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#BFD8E8</text>
+    </g>
+  </g>
+  <g transform="translate(615 1072)">
+    <rect width="560" height="308" rx="12" fill="#FFFFFF" stroke="#D1D5DB"/>
+    <text x="18" y="30" font-size="19" font-weight="700">Interaction</text>
+    <g transform="translate(14 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#4F8EF7" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.focus.ring</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#4F8EF7</text>
+    </g>
+    <g transform="translate(286 46)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#F3F4F6" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.disabled.background</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#F3F4F6</text>
+    </g>
+    <g transform="translate(14 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#D1D5DB" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.disabled.border</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#D1D5DB</text>
+    </g>
+    <g transform="translate(286 128)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#9CA3AF" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.disabled.text</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">#9CA3AF</text>
+    </g>
+    <g transform="translate(14 210)">
+      <rect width="260" height="70" rx="8" fill="#FAF7F2" stroke="#E8E3DC"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="url(#checker)" stroke="#D1D5DB"/>
+      <rect x="10" y="10" width="66" height="50" rx="5" fill="#1F2937" fill-opacity="0.45" stroke="#D1D5DB"/>
+      <text x="86" y="28" font-size="12" font-weight="600">color.overlay.scrim</text>
+      <text x="86" y="50" font-size="12" fill="#6B7280">rgba(31,41,55,0.45)</text>
+    </g>
+  </g>
+  </g>
+</svg>
