@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Instagram, Music2, Send, Youtube } from 'lucide-react';
 import { Logo } from './Logo';
 
@@ -42,14 +43,14 @@ export function Footer() {
             </p>
             <div className="mt-6 flex gap-2">
               {socials.map((s) => (
-                <a
+                <Link
                   key={s.label}
-                  href="#top"
+                  href="/#top"
                   aria-label={s.label}
                   className="border-rule/70 text-ink-muted hover:border-secondary/40 hover:text-secondary grid h-9 w-9 place-items-center rounded-full border transition-all duration-300 hover:-translate-y-0.5"
                 >
                   <s.icon className="h-4 w-4" />
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -83,13 +84,13 @@ export function Footer() {
             </p>
             <div className="mt-4 flex flex-col gap-2">
               {['Google Play', 'App Store'].map((store) => (
-                <a
+                <Link
                   key={store}
-                  href="#top"
+                  href="/#top"
                   className="border-rule/70 text-ink hover:border-secondary/40 hover:text-secondary inline-flex items-center justify-center rounded-xl border px-4 py-2.5 text-[13px] font-semibold transition-colors"
                 >
                   {store}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
