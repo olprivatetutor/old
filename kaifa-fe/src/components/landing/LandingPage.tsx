@@ -2,7 +2,6 @@ import { MotionConfig } from 'motion/react';
 import { Nav } from './Nav';
 import { Hero } from './Hero';
 import { Features } from './Features';
-import { About } from './About';
 import { LanguageDuo } from './LanguageDuo';
 import { StatsBar } from './StatsBar';
 import { HowItWorks } from './HowItWorks';
@@ -19,7 +18,6 @@ export function LandingPage() {
         <main>
           <Hero />
           <Features />
-          <About />
           <LanguageDuo />
           <StatsBar />
           <HowItWorks />

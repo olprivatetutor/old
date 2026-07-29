@@ -11,10 +11,10 @@ import { Logo } from './Logo';
 const links = [
   { label: 'Beranda', href: '/#top', sectionId: 'top' },
   { label: 'Fitur', href: '/#features', sectionId: 'features' },
-  { label: 'Tentang', href: '/#about', sectionId: 'about' },
   { label: 'Kurikulum', href: '/#kurikulum', sectionId: 'kurikulum' },
   { label: 'Harga', href: '/price' },
   { label: 'Cara Kerja', href: '/#how', sectionId: 'how' },
+  { label: 'Tentang', href: '/about' },
   { label: 'FAQ', href: '/#faq', sectionId: 'faq' },
 ];
 
