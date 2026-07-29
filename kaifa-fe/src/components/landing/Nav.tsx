@@ -1,31 +1,72 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils/cn';
 import { CtaButton } from './primitives';
 import { Logo } from './Logo';
 
 const links = [
-  { label: 'Beranda', href: '/#top' },
-  { label: 'Fitur', href: '/#features' },
-  { label: 'Kurikulum', href: '/#kurikulum' },
+  { label: 'Beranda', href: '/#top', sectionId: 'top' },
+  { label: 'Fitur', href: '/#features', sectionId: 'features' },
+  { label: 'Tentang', href: '/#about', sectionId: 'about' },
+  { label: 'Kurikulum', href: '/#kurikulum', sectionId: 'kurikulum' },
   { label: 'Harga', href: '/price' },
-  { label: 'Cara Kerja', href: '/#how' },
-  { label: 'FAQ', href: '/#faq' },
+  { label: 'Cara Kerja', href: '/#how', sectionId: 'how' },
+  { label: 'FAQ', href: '/#faq', sectionId: 'faq' },
 ];
 
+const sectionIds = links.map((l) => l.sectionId).filter((id): id is string => Boolean(id));
+
 export function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('top');
+  const tickingRef = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    const onScroll = () => {
+      if (tickingRef.current) return;
+      tickingRef.current = true;
+      window.requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 12);
+        tickingRef.current = false;
+      });
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (pathname !== '/') return;
+
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        if (visible[0]) setActiveSection(visible[0].target.id);
+      },
+      { rootMargin: '-15% 0px -70% 0px', threshold: 0 },
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  const isActive = (link: (typeof links)[number]) =>
+    link.sectionId ? pathname === '/' && activeSection === link.sectionId : pathname === link.href;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
@@ -46,7 +87,13 @@ export function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="text-ink-muted hover:bg-subtle/70 hover:text-ink rounded-full px-3.5 py-2 text-[14px] font-medium transition-colors"
+              aria-current={isActive(l) ? 'page' : undefined}
+              className={cn(
+                'rounded-full px-3.5 py-2 text-[14px] font-medium transition-colors',
+                isActive(l)
+                  ? 'bg-subtle text-ink'
+                  : 'text-ink-muted hover:bg-subtle/70 hover:text-ink',
+              )}
             >
               {l.label}
             </a>
@@ -84,7 +131,11 @@ export function Nav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="text-ink-muted hover:bg-subtle hover:text-ink rounded-xl px-3 py-2.5 text-[15px] font-medium"
+                aria-current={isActive(l) ? 'page' : undefined}
+                className={cn(
+                  'rounded-xl px-3 py-2.5 text-[15px] font-medium',
+                  isActive(l) ? 'bg-subtle text-ink' : 'text-ink-muted hover:bg-subtle hover:text-ink',
+                )}
               >
                 {l.label}
               </a>

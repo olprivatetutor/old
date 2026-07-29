@@ -2,10 +2,25 @@ import { Instagram, Music2, Send, Youtube } from 'lucide-react';
 import { Logo } from './Logo';
 
 const columns = [
-  { title: 'Navigasi', links: ['Beranda', 'Fitur', 'Kurikulum', 'Blog', 'FAQ'] },
+  {
+    title: 'Navigasi',
+    links: [
+      { label: 'Beranda', href: '/#top' },
+      { label: 'Fitur', href: '/#features' },
+      { label: 'Kurikulum', href: '/#kurikulum' },
+      { label: 'Blog', href: '#top' },
+      { label: 'FAQ', href: '/#faq' },
+    ],
+  },
   {
     title: 'Perusahaan',
-    links: ['Tentang Kami', 'Karier', 'Kontak', 'Kebijakan Privasi', 'Syarat & Ketentuan'],
+    links: [
+      { label: 'Tentang Kami', href: '/#about' },
+      { label: 'Karier', href: '#top' },
+      { label: 'Kontak', href: '#top' },
+      { label: 'Kebijakan Privasi', href: '#top' },
+      { label: 'Syarat & Ketentuan', href: '#top' },
+    ],
   },
 ];
 
@@ -48,12 +63,12 @@ export function Footer() {
               </p>
               <ul className="mt-4 space-y-2.5">
                 {c.links.map((l) => (
-                  <li key={l}>
+                  <li key={l.label}>
                     <a
-                      href="#top"
+                      href={l.href}
                       className="text-ink-muted hover:text-ink text-[14px] transition-colors"
                     >
-                      {l}
+                      {l.label}
                     </a>
                   </li>
                 ))}

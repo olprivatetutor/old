@@ -1,5 +1,3 @@
-'use client';
-
 import { BarChart3, ClipboardList, MessagesSquare, Trophy } from 'lucide-react';
 import { SectionHeading, Stagger, StaggerItem } from './primitives';
 

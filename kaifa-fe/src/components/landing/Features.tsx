@@ -1,5 +1,3 @@
-'use client';
-
 import { BarChart3, BookOpen, Bot, ClipboardList, Mic } from 'lucide-react';
 import { SectionHeading, Stagger, StaggerItem } from './primitives';
 

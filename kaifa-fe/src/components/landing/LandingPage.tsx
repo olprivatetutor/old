@@ -1,6 +1,8 @@
+import { MotionConfig } from 'motion/react';
 import { Nav } from './Nav';
 import { Hero } from './Hero';
 import { Features } from './Features';
+import { About } from './About';
 import { LanguageDuo } from './LanguageDuo';
 import { StatsBar } from './StatsBar';
 import { HowItWorks } from './HowItWorks';
@@ -11,19 +13,22 @@ import { Footer } from './Footer';
 
 export function LandingPage() {
   return (
-    <div className="bg-background font-sans text-ink relative min-h-screen scroll-smooth antialiased">
-      <Nav />
-      <main>
-        <Hero />
-        <Features />
-        <LanguageDuo />
-        <StatsBar />
-        <HowItWorks />
-        <Testimonials />
-        <Faq />
-        <FinalCta />
-      </main>
-      <Footer />
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="bg-background font-sans text-ink relative min-h-screen scroll-smooth antialiased">
+        <Nav />
+        <main>
+          <Hero />
+          <Features />
+          <About />
+          <LanguageDuo />
+          <StatsBar />
+          <HowItWorks />
+          <Testimonials />
+          <Faq />
+          <FinalCta />
+        </main>
+        <Footer />
+      </div>
+    </MotionConfig>
   );
 }
