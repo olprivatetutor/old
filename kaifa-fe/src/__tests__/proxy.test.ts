@@ -71,6 +71,16 @@ describe('proxy middleware', () => {
     expect(NextResponse.next).toHaveBeenCalled();
   });
 
+  it('calls next() when unauthenticated user accesses the about page', () => {
+    proxy(makeRequest('/about'));
+    expect(NextResponse.next).toHaveBeenCalled();
+  });
+
+  it('calls next() when authenticated user accesses the about page', () => {
+    proxy(makeRequest('/about', 'token123'));
+    expect(NextResponse.next).toHaveBeenCalled();
+  });
+
   it('redirects unauthenticated user from languages to login', () => {
     proxy(makeRequest('/languages'));
 

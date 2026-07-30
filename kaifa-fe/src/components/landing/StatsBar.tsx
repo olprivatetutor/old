@@ -1,5 +1,3 @@
-'use client';
-
 import { Award, BookOpen, Star, Users } from 'lucide-react';
 import { CountUp, Stagger, StaggerItem } from './primitives';
 

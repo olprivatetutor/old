@@ -4,6 +4,7 @@ import { LoginForm } from '../login-form';
 
 const mockLogin = jest.fn();
 const mockLogout = jest.fn();
+let mockSearchParams = new URLSearchParams();
 
 jest.mock('../../hooks/use-auth', () => ({
   useAuth: () => ({
@@ -16,9 +17,20 @@ jest.mock('../../hooks/use-auth', () => ({
   }),
 }));
 
+jest.mock('next/navigation', () => ({
+  useSearchParams: () => mockSearchParams,
+}));
+
 describe('LoginForm', () => {
   beforeEach(() => {
     mockLogin.mockClear();
+    mockSearchParams = new URLSearchParams();
+  });
+
+  it('prefills email from the "email" query param', () => {
+    mockSearchParams = new URLSearchParams({ email: 'prefill@kaifa.id' });
+    render(<LoginForm />);
+    expect(screen.getByLabelText(/email/i)).toHaveValue('prefill@kaifa.id');
   });
 
   it('renders email and password fields', () => {

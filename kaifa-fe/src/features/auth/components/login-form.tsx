@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,6 +13,8 @@ import { loginSchema, type LoginFormValues } from '../schemas/login.schema';
 export function LoginForm() {
   const { login, isLoading, error } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const searchParams = useSearchParams();
+  const emailFromQuery = searchParams.get('email') ?? '';
 
   const {
     register,
@@ -19,6 +22,7 @@ export function LoginForm() {
     formState: { errors },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
+    defaultValues: { email: emailFromQuery, password: '' },
   });
 
   return (

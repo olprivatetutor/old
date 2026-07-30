@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { Reveal, SectionHeading } from './primitives';
@@ -44,6 +42,7 @@ export function LanguageDuo() {
                   loading="lazy"
                   width={1024}
                   height={768}
+                  sizes="(min-width: 640px) 208px, 160px"
                   className="pointer-events-none absolute -right-6 -bottom-4 h-40 w-auto opacity-70 sm:h-52"
                 />
                 <div className="relative max-w-[62%]">
